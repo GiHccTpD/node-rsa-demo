@@ -2,7 +2,6 @@ const NodeRSA = require('node-rsa')
 const fs = require('fs')
 const path = require('path')
 const keyData = fs.readFileSync(path.join(__dirname, './private_key.pem'), 'utf8');
-console.log('keyData', keyData);
 
 function encryptPrivate(encryData) {
     let pkcsType = 'pkcs8';
@@ -12,4 +11,7 @@ function encryptPrivate(encryData) {
     console.log('使用私钥加密后的数据：', encrypted);
     return encrypted;
 }
+
+console.time('rsa-en');
 encryptPrivate('123');
+console.timeEnd('rsa-en')
